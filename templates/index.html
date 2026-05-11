@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лаба 11 - Форма</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f8f9fa; }
+        .card { max-width: 420px; padding: 24px; background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+        h1 { margin-top: 0; font-size: 22px; }
+        label { display: block; margin-top: 12px; font-weight: 600; }
+        input { width: 100%; padding: 10px; margin-top: 6px; box-sizing: border-box; }
+        button { margin-top: 16px; width: 100%; padding: 10px; background: #0d6efd; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+        .ok { margin-top: 16px; color: #0a7a2f; font-weight: 700; }
+        .error { margin-top: 16px; color: #b00020; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 id="title">Форма обратной связи</h1>
+        <form method="post">
+            <label for="username">Имя</label>
+            <input id="username" name="username" value="{{ username }}" placeholder="Введите имя">
+
+            <label for="email">Email</label>
+            <input id="email" name="email" value="{{ email }}" placeholder="example@mail.com">
+
+            <button id="submit-btn" type="submit">Отправить</button>
+        </form>
+
+        {% if success %}
+            <p id="success-message" class="ok">Форма отправлена успешно</p>
+        {% elif request.method == "POST" %}
+            <p id="error-message" class="error">Заполните имя и корректный email</p>
+        {% endif %}
+    </div>
+</body>
+</html>
